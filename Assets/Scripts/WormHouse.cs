@@ -36,7 +36,7 @@ public class WormHouse : MonoBehaviour {
         while(WormNum < Wormlimit)
         {
             
-            transform.eulerAngles = new Vector3(Random.RandomRange(0,rotationLimit), 0, 0);
+            transform.eulerAngles = new Vector3(Random.RandomRange(0,rotationLimit), transform.rotation.y, transform.rotation.z);
             yield return new WaitForSeconds(rotationDelay);
         }
             
