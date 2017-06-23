@@ -3,11 +3,11 @@ using System.Collections;
 
 public class WormHouse : MonoBehaviour {
     public GameObject WormHead,Worm;
-    public float WormNum,delay,rotationDelay,Wormlimit,rotationLimit;
+    public float WormNum,delay,rotationDelay,Wormlimit,rotationLimit,rotationY;
 	// Use this for initialization
 	void Start () {
-        StartCoroutine("CreateWorm");
-        StartCoroutine("RotateHouse");
+        StartCoroutine(CreateWorm());
+        StartCoroutine(RotateHouse());
     }
 	
 	// Update is called once per frame
@@ -36,7 +36,7 @@ public class WormHouse : MonoBehaviour {
         while(WormNum < Wormlimit)
         {
             
-            transform.eulerAngles = new Vector3(Random.RandomRange(0,rotationLimit), 0, 0);
+            transform.rotation = Quaternion.Euler(Random.RandomRange(0,rotationLimit), rotationY, 0);
             yield return new WaitForSeconds(rotationDelay);
         }
             
