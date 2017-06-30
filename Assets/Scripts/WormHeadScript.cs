@@ -8,18 +8,22 @@ public class WormHeadScript : MonoBehaviour {
     public GameObject Worm;
     public GameObject targetObj;
     CanonScript canon;
-    public float speed, hp, atackedTime,delay;
-    public int length;
-    public float updateDelay;
+    WormNumManager wormNum;
+    public string name;
+    public float speed, hp, atackedTime,delay,wormPower;
+    public int length,destroy_Value,count;
+    public float updateDelay,zLimit,yLimit,yUpLimit, yvalue,zvalue;
     public bool isDamaged;
     float timer;
     // Use this for initialization
     void Start()
     {
+        //gameObject.name = name;
         canon = GameObject.FindObjectOfType<CanonScript>();
         //초기화
         postions = new Vector3[Worms.Count];
-        updateDelay = 1 / speed;
+        updateDelay = 1/speed;
+        wormNum = GameObject.Find("WormNumManager").GetComponent<WormNumManager>();
         //라인렌더러 초기화
 
         for (int i = 0; i < Worms.Count; i++)
@@ -27,13 +31,24 @@ public class WormHeadScript : MonoBehaviour {
             postions[i] = transform.position;
         }
 
-
+        
         StartCoroutine(UpdateLine());   //updateDelay주기로 업데이트
     }
 
     void Update()
     {
+        //GetComponent<Rigidbody>().velocity = transform.forward * speed;
         transform.Translate(0, 0, speed * Time.deltaTime);
+        //if (transform.rotation.x == 40 || transform.rotation.x == -59)
+        //    transform.Rotate(30, 0, 0);
+        if (transform.position.z > zLimit)
+            transform.position = new Vector3(transform.position.x, transform.position.y, zLimit - zvalue);
+        if (transform.position.z < -zLimit)
+            transform.position = new Vector3(transform.position.x, transform.position.y, -zLimit + zvalue);
+        if (transform.position.y > yUpLimit)
+            transform.position = new Vector3(transform.position.x, yUpLimit - yvalue, transform.position.z);
+        if (transform.position.y < -yLimit)
+            transform.position = new Vector3(transform.position.x, -yLimit + yvalue, transform.position.z);
         if (!isDamaged)
         {
             atackedTime += Time.deltaTime;
@@ -45,8 +60,12 @@ public class WormHeadScript : MonoBehaviour {
                 
         }
             
-        if (hp <= 0)
+        if (hp <= 0||destroy_Value==0)
+        {
+            wormNum.count--;
             Destroy(gameObject);
+        }
+            
     }
 
     IEnumerator UpdateLine()
@@ -76,15 +95,22 @@ public class WormHeadScript : MonoBehaviour {
     //    for(int i=length-1;)
     //    }
     //}
+
+
     void OnCollisionEnter(Collision col)
     {
         if(col.transform.tag=="Wall")
         {
             DrawLaser(transform.position);
+           //GetComponent<Rigidbody>().velocity = transform.forward * speed;
+
         }
         else if(col.transform.tag=="CanonWall")
         {
+           
             DrawLaser(transform.position);
+            //GetComponent<Rigidbody>().velocity = transform.forward * speed;
+            destroy_Value--;
             for(int i=0;i<length;i++)
             {
                 GameObject tmp = Instantiate(Worm);
@@ -94,25 +120,27 @@ public class WormHeadScript : MonoBehaviour {
             }
             length *= 2;
             initWorms();
-            canon.hp -= 10;
+            canon.hp -= wormPower;
             //Instantiate(prefebs);
             //Worms.Add(prefebs);
             
             //length *= 2;
 
         }
-        else if(col.transform.tag=="Worm")
-        {
-            //Do nothing
-        }
+        //else if(/*col.transform.tag=="Worm"||*/col.transform.tag=="WormHead")
+        //{
+        //    ////DrawLaser(transform.position);
+        //    //GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        //}
     }
 
-    public void damage(float damage)
+    public void damage(float damage,float heal)
     {
         if(isDamaged)
         {
-            canon.hp += 10;
+            //canon.hp += 10;
             hp -= damage;
+            canon.hp += heal;
             isDamaged = false;
         }
     }
@@ -123,6 +151,7 @@ public class WormHeadScript : MonoBehaviour {
         Vector3 rayDir = transform.TransformDirection(Vector3.forward);
         if (Physics.Raycast(startPoint, rayDir, out hit, Mathf.Infinity))
         {
+            //Debug.Log(hit.transform.name);
             //Debug.Log("Infinity" + Mathf.Infinity);
             //Debug.Log("hit" + hit);
             //Debug.Log("startPoint" + startPoint);

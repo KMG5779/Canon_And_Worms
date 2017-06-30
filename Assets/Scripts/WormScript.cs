@@ -11,7 +11,7 @@ public class WormScript : MonoBehaviour {
     }
     void Update()
     {
-        if (head.hp <= 0)
+        if (head.hp <= 0||head.destroy_Value<=0)
             Destroy(gameObject);
     }
 
