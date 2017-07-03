@@ -225,6 +225,7 @@
     <Compile Include="Assets\Scripts\WormHouse.cs" />
     <Compile Include="Assets\Scripts\WormNumManager.cs" />
     <Compile Include="Assets\Scripts\WormScript.cs" />
+    <Compile Include="Assets\Scripts\testBtn.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cannon&amp;Worm_UIpack\StatusFontData.txt" />
