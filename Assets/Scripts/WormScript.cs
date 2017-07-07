@@ -7,7 +7,7 @@ public class WormScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        thisCollider = GetComponent<SphereCollider>();
+        transform.localScale = head.transform.localScale/10;
     }
     void Update()
     {

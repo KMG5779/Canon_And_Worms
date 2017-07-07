@@ -9,19 +9,23 @@ public class WormHeadScript : MonoBehaviour {
     public GameObject targetObj;
     CanonScript canon;
     WormNumManager wormNum;
+    UIManager UI;
     public string name;
     public float speed, hp, atackedTime,delay,wormPower;
     public int length,destroy_Value,count;
     public float updateDelay,zLimit,yLimit,yUpLimit, yvalue,zvalue;
     public bool isDamaged;
-    float timer;
+    float timer,hpMax;
     // Use this for initialization
     void Start()
     {
+        hp = 50;
+        UI = GameObject.FindGameObjectWithTag("UI").GetComponent<UIManager>();
         //gameObject.name = name;
         canon = GameObject.FindObjectOfType<CanonScript>();
         //초기화
         postions = new Vector3[Worms.Count];
+        hpMax = canon.hp;
         updateDelay = 1/speed;
         wormNum = GameObject.Find("WormNumManager").GetComponent<WormNumManager>();
         //라인렌더러 초기화
@@ -63,6 +67,7 @@ public class WormHeadScript : MonoBehaviour {
         if (hp <= 0||destroy_Value==0)
         {
             wormNum.count--;
+            UI.score.text = (int.Parse(UI.score.text)+1).ToString();
             Destroy(gameObject);
         }
             
@@ -141,6 +146,8 @@ public class WormHeadScript : MonoBehaviour {
             //canon.hp += 10;
             hp -= damage;
             canon.hp += heal;
+            if (canon.hp > hpMax)
+                canon.hp = hpMax;
             isDamaged = false;
         }
     }

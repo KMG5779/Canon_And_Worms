@@ -9,11 +9,12 @@ public class CanonBallScript : MonoBehaviour {
     public float power;
     CanonScript canon;
     WormHeadScript head;
+    public UIManager UI;
 	// Use this for initialization
 	void Start () {
-        GetComponent<SphereCollider>().radius = range;
         //head = GameObject.FindObjectOfType<WormHeadScript>();
         canon = GameObject.FindWithTag("Canon").GetComponent<CanonScript>();
+        UI = GameObject.FindWithTag("UI").GetComponent<UIManager>();
 	}
 	
 	// Update is called once per frame
@@ -32,6 +33,7 @@ public class CanonBallScript : MonoBehaviour {
             if (col.GetComponent<WormScript>().head.isDamaged)
                 hp--;
             col.GetComponent<WormScript>().head.damage(power,heal);
+            
         }
         else if(col.transform.tag == "WormHead")
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class coverFlowUnit : MonoBehaviour {
+public class CoverFlowUnit : MonoBehaviour {
 
 
     Transform mTrans;
@@ -26,7 +26,7 @@ public class coverFlowUnit : MonoBehaviour {
         mWidget = GetComponent<UIWidget>();
 
         //초기값 입력.
-        cellWidth = 300;
+        cellWidth = 150;
         downScale = 0.35f;
     }
 
