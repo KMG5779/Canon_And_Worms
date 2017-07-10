@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MiniJSON;
+
 public class CanonScript : MonoBehaviour {
     public string canonName;
     public float delay, rotationZ;
@@ -35,10 +36,10 @@ public class CanonScript : MonoBehaviour {
         canonName = canonData["CanonName"].ToString();
         hp = float.Parse(canonData["CanonHp"].ToString());
         delay = float.Parse(canonData["CanonDelay"].ToString())/100;
-        atk = float.Parse(canonData["Atk"].ToString())/100;
-        scale = float.Parse(canonData["Scale"].ToString())/100;
-        heal = float.Parse(canonData["Heal"].ToString())/100;
-        canonBallspeed = float.Parse(canonData["Speed"].ToString());
+        atk = float.Parse(canonData["CanonPower"].ToString())/100;
+        scale = float.Parse(canonData["CanonScale"].ToString())/100;
+        heal = float.Parse(canonData["CanonHeal"].ToString())/100;
+        canonBallspeed = float.Parse(canonData["CanonSpeed"].ToString());
         coolTime = delay;
     }
     void Update()

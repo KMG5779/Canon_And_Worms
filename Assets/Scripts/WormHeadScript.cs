@@ -34,6 +34,7 @@ public class WormHeadScript : MonoBehaviour {
         {
             postions[i] = transform.position;
         }
+        
 
         
         StartCoroutine(UpdateLine());   //updateDelay주기로 업데이트
@@ -63,8 +64,14 @@ public class WormHeadScript : MonoBehaviour {
             }
                 
         }
+        if (destroy_Value <= 0)
+        {
+            wormNum.count--;
+            Destroy(gameObject);
+        }
             
-        if (hp <= 0||destroy_Value==0)
+            
+        if (hp <= 0)
         {
             wormNum.count--;
             UI.score.text = (int.Parse(UI.score.text)+1).ToString();
@@ -84,7 +91,7 @@ public class WormHeadScript : MonoBehaviour {
             {
                 postions[i] = postions[i - 1];
             }
-            for (int i = length - 1; i > 0; i--)
+            for (int i = length -1; i > 0; i--)
             {
                 Worms[i].transform.position = postions[i];
             }
@@ -120,6 +127,7 @@ public class WormHeadScript : MonoBehaviour {
             {
                 GameObject tmp = Instantiate(Worm);
                 tmp.transform.position = transform.position;
+                tmp.transform.localScale = transform.localScale/2;
                 tmp.GetComponent<WormScript>().head = GetComponent<WormHeadScript>();
                 Worms.Add(tmp);
             }

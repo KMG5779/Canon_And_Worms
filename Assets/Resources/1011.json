@@ -1,0 +1,13 @@
+﻿{
+  "CanonID":1011,
+  "CanonName" : "Type3 중급 대포",
+  "CanonClass" : 2,
+  "CanonHp" : 1100,
+  "CanonLevel" : 1,
+  "CanonDelay" : 320,
+  "CanonPower" : 10,
+  "CanonSpeed" : 5,
+  "CanonScale" : 1,
+  "CanonHeal" : 0,
+  "OpenLevel" : 20
+}

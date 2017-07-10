@@ -1,0 +1,13 @@
+﻿{
+  "CanonID":1004,
+  "CanonName" : "Type1 상급 대포",
+  "CanonClass" : 3,
+  "CanonHp" : 1200,
+  "CanonLevel" : 1,
+  "CanonDelay" : 260,
+  "CanonPower" : 10,
+  "CanonSpeed" : 30,
+  "CanonScale" : 0,
+  "CanonHeal" : 0,
+  "OpenLevel" : 35
+}

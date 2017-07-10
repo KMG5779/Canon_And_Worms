@@ -9,9 +9,10 @@ public class UserInfoDisplayer : MonoBehaviour {
     public UILabel coin, cash, gold, material;
     public UILabel bestStageRank, bestStage, bestScoreRank, bestScore;
     public UILabel selectedCanonName, selectedCanonLevel, selectedCanonHp, selectedCanonDelay,
-        selectedCanonPower, selectedCanonScale, selectedCanonHeal;
+        selectedCanonPower, selectedCanonScale, selectedCanonHeal, selectedCanonSpeed;
     public string userJson,canonJson;
     Dictionary<string, object> userData;
+    public bool pressOnce;
     // Use this for initialization
     void Start () {
         TextAsset data = Resources.Load(id.ToString()) as TextAsset;
@@ -42,13 +43,14 @@ public class UserInfoDisplayer : MonoBehaviour {
             selectedCanonName.text = userCanonData["CanonName"].ToString();
             selectedCanonLevel.text = userCanonData["CanonLevel"].ToString();
             selectedCanonHp.text = userCanonData["CanonHp"].ToString();
-            selectedCanonPower.text = userCanonData["Atk"].ToString();
+            selectedCanonPower.text = userCanonData["CanonPower"].ToString();
             selectedCanonDelay.text = userCanonData["CanonDelay"].ToString();
-            selectedCanonHeal.text = userCanonData["Heal"].ToString();
-            selectedCanonScale.text = userCanonData["Scale"].ToString();
+            selectedCanonHeal.text = userCanonData["CanonHeal"].ToString();
+            selectedCanonScale.text = userCanonData["CanonScale"].ToString();
+            selectedCanonSpeed.text = userCanonData["CanonSpeed"].ToString();
 
         }
-        
+        pressOnce = true;
         //stageNum = int.Parse(userData["stageNum"].ToString());
         //gold = int.Parse(userData["gold"].ToString());
         //cash = int.Parse(userData["cash"].ToString());
@@ -67,14 +69,19 @@ public class UserInfoDisplayer : MonoBehaviour {
     }
     public void GameStart()
     {
-        int tmp;
-        tmp=int.Parse(userData["coin"].ToString()) - 1;
-        userData.Remove("coin");
-        userData.Add("coin", tmp);
-        string data = Json.Serialize(userData);
-        //byte[] bytesForEncoding = Encoding.UTF8.GetBytes(data);
-        //data = Convert.ToBase64String(bytesForEncoding);
-        File.WriteAllText(Application.dataPath + @"\Resources\"+id.ToString()+".json", data);
-        Application.LoadLevel(4);
+        if(pressOnce)
+        {
+            int tmp;
+            tmp = int.Parse(userData["coin"].ToString()) - 1;
+            userData.Remove("coin");
+            userData.Add("coin", tmp);
+
+            string data = Json.Serialize(userData);
+            //byte[] bytesForEncoding = Encoding.UTF8.GetBytes(data);
+            //data = Convert.ToBase64String(bytesForEncoding);
+            File.WriteAllText(Application.dataPath + @"\Resources\" + id.ToString() + ".json", data);
+            Application.LoadLevel(4);
+            pressOnce = false;
+        }
     }
 }

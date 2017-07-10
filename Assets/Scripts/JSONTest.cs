@@ -8,16 +8,18 @@ public class JSONTest : MonoBehaviour {
     public int id, stageNum, gold, cash, material;
     public string JSon,canonJson;
     public CanonStatus[] canons;
-    public Dictionary<string, object> userData,canonData;
+    public TextAsset userData;
+    public Dictionary<string, object> userInfoData,canonData;
 	// Use this for initialization
 	void Awake () {
-        TextAsset data = Resources.Load(id.ToString()) as TextAsset;
-        JSon = data.text;
-        userData = Json.Deserialize(JSon) as Dictionary<string, object>;
-        stageNum=int.Parse(userData["stageNum"].ToString());
-        gold = int.Parse(userData["gold"].ToString());
-        cash = int.Parse(userData["cash"].ToString());
-        material = int.Parse(userData["material"].ToString());
+        
+        userData = Resources.Load(id.ToString()) as TextAsset;
+        JSon = userData.text;
+        this.userInfoData = Json.Deserialize(JSon) as Dictionary<string, object>;
+        stageNum = int.Parse(this.userInfoData["stageNum"].ToString());
+        gold = int.Parse(this.userInfoData["gold"].ToString());
+        cash = int.Parse(this.userInfoData["cash"].ToString());
+        material = int.Parse(this.userInfoData["material"].ToString());
 
         
     }
@@ -33,13 +35,13 @@ public class JSONTest : MonoBehaviour {
             canonJson = data.text;
             canonData = Json.Deserialize(canonJson) as Dictionary<string, object>;
             canons[i].canonName = canonData["CanonName"].ToString();
-            canons[i].atk = float.Parse(canonData["Atk"].ToString());
+            canons[i].atk = float.Parse(canonData["CanonPower"].ToString());
             canons[i].hp = float.Parse(canonData["CanonHp"].ToString());
             canons[i].delay = float.Parse(canonData["CanonDelay"].ToString());
             canons[i].canonLevel = int.Parse(canonData["CanonLevel"].ToString());
-            canons[i].heal = float.Parse(canonData["Heal"].ToString());
+            canons[i].heal = float.Parse(canonData["CanonHeal"].ToString());
             canons[i].canonClass = int.Parse(canonData["CanonClass"].ToString());
-            canons[i].scale = float.Parse(canonData["Scale"].ToString());
+            canons[i].scale = float.Parse(canonData["CanonScale"].ToString());
         }
     }
 

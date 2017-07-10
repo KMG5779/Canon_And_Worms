@@ -1,0 +1,13 @@
+﻿{
+  "CanonID":1029,
+  "CanonName" : "Type7 완성 대포",
+  "CanonClass" : 4,
+  "CanonLevel" : 1,
+  "CanonHp" : 1300,
+  "CanonDelay" : 290,
+  "CanonPower" : 50,
+  "CanonSpeed" : 30,
+  "CanonScale" : 1,
+  "CanonHeal" : 25,
+  "OpenLevel" : 0
+}

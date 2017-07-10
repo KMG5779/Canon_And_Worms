@@ -1,0 +1,13 @@
+﻿{
+  "CanonID":1005,
+  "CanonName" : "Type1 완성 대포",
+  "CanonClass" : 4,
+  "CanonHp" : 1500,
+  "CanonLevel" : 1,
+  "CanonDelay" : 250,
+  "CanonPower" : 30,
+  "CanonSpeed" : 50,
+  "CanonScale" : 0,
+  "CanonHeal" : 0,
+  "OpenLevel" : 0
+}

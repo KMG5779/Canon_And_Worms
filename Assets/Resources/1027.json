@@ -1,0 +1,13 @@
+﻿{
+  "CanonID":1027,
+  "CanonName" : "Type7 중급 대포",
+  "CanonClass" : 2,
+  "CanonHp" : 800,
+  "CanonLevel" : 1,
+  "CanonDelay" : 310,
+  "CanonPower" : 15,
+  "CanonSpeed" : 10,
+  "CanonScale" : 0,
+  "CanonHeal" : 10,
+  "OpenLevel" : 20
+}

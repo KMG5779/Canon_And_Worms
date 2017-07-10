@@ -1,0 +1,13 @@
+﻿{
+  "CanonID":1019,
+  "CanonName" : "Type5 중급 대포",
+  "CanonClass" : 2,
+  "CanonLevel" : 1,
+  "CanonHp" : 1400,
+  "CanonDelay" : 380,
+  "CanonPower" : 5,
+  "CanonSpeed" : 0,
+  "CanonScale" : 0,
+  "CanonHeal" : 30,
+  "OpenLevel" : 20
+}

@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: f7cca80b9e81aee478f532ee6ddbda77
+timeCreated: 1499657660
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: body2d
+    100002: body3d
+    100004: body_rock
+    100006: head
+    100008: helmet
+    100010: jewel&feather
+    100012: Tnt
+    100014: wings
+    100016: //RootNode
+    100018: Crown
+    100020: father
+    100022: Helmet
+    100024: TNT
+    100026: Wing
+    100028: body1
+    100030: body2
+    100032: eye
+    100034: head_rock
+    100036: Helmet_kni
+    100038: Helmet_sol
+    400000: body2d
+    400002: body3d
+    400004: body_rock
+    400006: head
+    400008: helmet
+    400010: jewel&feather
+    400012: Tnt
+    400014: wings
+    400016: //RootNode
+    400018: Crown
+    400020: father
+    400022: Helmet
+    400024: TNT
+    400026: Wing
+    400028: body1
+    400030: body2
+    400032: eye
+    400034: head_rock
+    400036: Helmet_kni
+    400038: Helmet_sol
+    2300000: body2d
+    2300002: body3d
+    2300004: body_rock
+    2300006: head
+    2300008: helmet
+    2300010: jewel&feather
+    2300012: Tnt
+    2300014: wings
+    2300016: Crown
+    2300018: father
+    2300020: Helmet
+    2300022: TNT
+    2300024: Wing
+    2300026: body1
+    2300028: body2
+    2300030: eye
+    2300032: head_rock
+    2300034: Helmet_kni
+    2300036: Helmet_sol
+    3300000: body2d
+    3300002: body3d
+    3300004: body_rock
+    3300006: head
+    3300008: helmet
+    3300010: jewel&feather
+    3300012: Tnt
+    3300014: wings
+    3300016: Crown
+    3300018: father
+    3300020: Helmet
+    3300022: TNT
+    3300024: Wing
+    3300026: body1
+    3300028: body2
+    3300030: eye
+    3300032: head_rock
+    3300034: Helmet_kni
+    3300036: Helmet_sol
+    4300000: wings
+    4300002: head
+    4300004: Tnt
+    4300006: helmet
+    4300008: jewel&feather
+    4300010: body3d
+    4300012: body_rock
+    4300014: body2d
+    4300016: Wing
+    4300018: TNT
+    4300020: Helmet
+    4300022: Crown
+    4300024: father
+    4300026: eye
+    4300028: body2
+    4300030: body1
+    4300032: head_rock
+    4300034: Helmet_kni
+    4300036: Helmet_sol
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

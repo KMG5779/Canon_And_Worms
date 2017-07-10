@@ -32,7 +32,7 @@ public class testBtn : MonoBehaviour {
         limit = uiTable.GetChildList().Count;
         pgSize = (int)pageSize;
         once = true;
-        gold.text=data.userData["gold"].ToString();
+        gold.text=data.userInfoData["gold"].ToString();
         cash.text = data.cash.ToString();
         material.text = data.material.ToString();
     }
@@ -87,6 +87,9 @@ public class testBtn : MonoBehaviour {
                 label1.text = "9/" + uiTable.GetChildList().Count;
                 break;
         }
+        gold.text = data.userInfoData["gold"].ToString();
+        cash.text = data.cash.ToString();
+        material.text = data.material.ToString();
     }
     public void TestBoots()
     { 
@@ -188,7 +191,6 @@ public class testBtn : MonoBehaviour {
     }
     public void UpgradeCanon()
     {
-        canonstat.canonLevel++;
         canonstat.CanonUpgrade();
         canonLevelInfo.text = canonstat.canonLevel.ToString();
         canonHpInfo.text = canonstat.hp.ToString();
@@ -201,6 +203,7 @@ public class testBtn : MonoBehaviour {
     public void SelectCanon()
     {
         canonstat.SelectCanon();
+        
     }
     public void QuitInventory()
     {

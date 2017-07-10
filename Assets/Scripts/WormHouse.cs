@@ -47,7 +47,7 @@ public class WormHouse : MonoBehaviour {
                         }
                         break;
                     case 1:
-                        if(worm2Num<worm2Limit)
+                        if (worm2Num < worm2Limit)
                         {
                             tmpHead = Instantiate(wormHead2) as GameObject;
                             tmpWorm = Instantiate(worm) as GameObject;
@@ -62,7 +62,7 @@ public class WormHouse : MonoBehaviour {
                         }
                         break;
                     case 2:
-                        if(worm3Num<worm3Limit)
+                        if (worm3Num < worm3Limit)
                         {
                             tmpHead = Instantiate(wormHead3) as GameObject;
                             tmpWorm = Instantiate(worm) as GameObject;
@@ -76,21 +76,21 @@ public class WormHouse : MonoBehaviour {
                             worm3Num++;
                         }
                         break;
-                    //case 3:
-                    //    tmpHead = Instantiate(wormHead) as GameObject;
-                    //    tmpWorm = Instantiate(worm) as GameObject;
-                    //    tmpHead.transform.position = transform.position;
-                    //    tmpHead.transform.rotation = transform.rotation;
-                    //    tmpWorm.transform.position = tmpHead.transform.position;
-                    //    tmpWorm.GetComponent<WormScript>().head = tmpHead.GetComponent<WormHeadScript>();
-                    //    tmpHead.GetComponent<WormHeadScript>().Worms.Add(tmpWorm);
-                    //    tmpHead.GetComponent<WormHeadScript>().length++;
-                    //    tmpHead.GetComponent<WormHeadScript>().initWorms();
-                    //    wormNum++;
-                    //    break;
+                        //case 3:
+                        //    tmpHead = Instantiate(wormHead) as GameObject;
+                        //    tmpWorm = Instantiate(worm) as GameObject;
+                        //    tmpHead.transform.position = transform.position;
+                        //    tmpHead.transform.rotation = transform.rotation;
+                        //    tmpWorm.transform.position = tmpHead.transform.position;
+                        //    tmpWorm.GetComponent<WormScript>().head = tmpHead.GetComponent<WormHeadScript>();
+                        //    tmpHead.GetComponent<WormHeadScript>().Worms.Add(tmpWorm);
+                        //    tmpHead.GetComponent<WormHeadScript>().length++;
+                        //    tmpHead.GetComponent<WormHeadScript>().initWorms();
+                        //    wormNum++;
+                        //    break;
                 }
                 
-                if (wormNum >= wormLimit&&worm2Num >=worm2Limit&&worm3Num>worm3Limit)
+                if (wormNum >= wormLimit&&worm2Num >=worm2Limit&&worm3Num>=worm3Limit)
                 {
                     win = true;
                 }

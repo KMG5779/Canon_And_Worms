@@ -1,0 +1,13 @@
+﻿{
+  "CanonID":1023,
+  "CanonName" : "Type6 중급 대포",
+  "CanonClass" : 2,
+  "CanonHp" : 600,
+  "CanonLevel" : 1,
+  "CanonDelay" : 270,
+  "CanonPower" : 20,
+  "CanonSpeed" : 15,
+  "CanonScale" : 0,
+  "CanonHeal" : 0,
+  "OpenLevel" : 20
+}

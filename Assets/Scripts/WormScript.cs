@@ -7,7 +7,7 @@ public class WormScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        transform.localScale = head.transform.localScale/10;
+        transform.localScale = head.transform.localScale*10;
     }
     void Update()
     {

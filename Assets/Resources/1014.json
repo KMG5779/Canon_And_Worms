@@ -1,0 +1,13 @@
+﻿{
+  "CanonID":1014,
+  "CanonName" : "Type4 기본 대포",
+  "CanonClass" : 1,
+  "CanonHp" : 1400,
+  "CanonLevel" : 1,
+  "CanonDelay" : 580,
+  "CanonPower" : 10,
+  "CanonSpeed" : 5,
+  "CanonScale" : 1,
+  "CanonHeal" : 0,
+  "OpenLevel" : 10
+}

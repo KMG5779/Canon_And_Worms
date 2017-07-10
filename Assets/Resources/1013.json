@@ -1,0 +1,13 @@
+﻿{
+  "CanonID":1013,
+  "CanonName" : "Type3 완성 대포",
+  "CanonClass" : 4,
+  "CanonHp" : 1300,
+  "CanonLevel" : 1,
+  "CanonDelay" : 300,
+  "CanonPower" : 50,
+  "CanonSpeed" : 0,
+  "CanonScale" : 1,
+  "CanonHeal" : 0,
+  "OpenLevel" : 0
+}

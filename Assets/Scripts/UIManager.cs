@@ -19,13 +19,15 @@ public class UIManager : MonoBehaviour {
     public SpringPanel springPanel;
     public int canonBall;
     int tempHp;
-    public int hpMax;
+    public int hpMax,id;
     string userJson;
     bool find;
-	// Use this for initialization
-	void Start () {
-        TextAsset data = Resources.Load("Temp") as TextAsset;
-        Dictionary<string, object> userData;
+    public TextAsset data;
+    public Dictionary<string, object> userData;
+    // Use this for initialization
+    void Awake()
+    {
+        data = Resources.Load(id.ToString()) as TextAsset;
         userJson = data.text;
         userData = Json.Deserialize(userJson) as Dictionary<string, object>;
         stage.text = userData["stageNum"].ToString();
@@ -33,6 +35,9 @@ public class UIManager : MonoBehaviour {
         cash.text = userData["cash"].ToString();
         gold.text = userData["gold"].ToString();
         material.text = userData["material"].ToString();
+    }
+    void Start () {
+        
         tempHp = (int)canon.hp / 10;
         hpMax = (int)canon.hp;
         hp.text = tempHp.ToString();
@@ -61,33 +66,38 @@ public class UIManager : MonoBehaviour {
 
 
             xPos = springPanel.target.x;
-            if (xPos > 410)
+            if (xPos > 690)
                 canonBall = 1;
-            else if (xPos > 270)
+            else if (xPos > 550)
                 canonBall = 2;
-            else if (xPos > 130)
+            else if (xPos > 410)
                 canonBall = 3;
-            else if (xPos > -3)
+            else if (xPos > 270)
                 canonBall = 4;
-            else if (xPos > -150)
+            else if (xPos > 130)
                 canonBall = 5;
-            else if (xPos > -290)
+            else if (xPos > -10)
                 canonBall = 6;
-            else if (xPos > -430)
+            else if (xPos > -150)
                 canonBall = 7;
+            else if (xPos > -290)
+                canonBall = 8;
+            else if (xPos > -430)
+                canonBall = 9;
+            else if (xPos > -570)
+                canonBall = 10;
+            else if (xPos > -710)
+                canonBall = 11;
             switch (canonBall)
             {
                 case 1:
-                    Debug.Log("첫번째 포탄!");
                     canon.selectBomb = 1;
                     break;
                 case 2:
-                    Debug.Log("두번째 포탄!");
                     canon.selectBomb = 2;
                     break;
                 case 3:
                     canon.selectBomb = 3;
-                    Debug.Log("세번째 포탄!");
                     break;
                 case 4:
                     canon.selectBomb = 4;
@@ -101,7 +111,25 @@ public class UIManager : MonoBehaviour {
                 case 7:
                     canon.selectBomb = 7;
                     break;
+                case 8:
+                    canon.selectBomb = 8;
+                    break;
+                case 9:
+                    canon.selectBomb = 9;
+                    break;
+                case 10:
+                    canon.selectBomb = 10;
+                    break;
+                case 11:
+                    canon.selectBomb = 11;
+                    break;
             }
         }
     }
+
+    public void ExitStage()
+    {
+        Application.LoadLevel("Main");
+    }
+
 }
