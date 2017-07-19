@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MiniJSON;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class JSONTest : MonoBehaviour {
     public int id, stageNum, gold, cash, material;
@@ -27,7 +28,6 @@ public class JSONTest : MonoBehaviour {
     {
         TextAsset data;
         canons = GameObject.FindObjectsOfType<CanonStatus>();
-        Debug.Log(canons.Length);
         for (int i = 0; i < canons.Length; i++)
         {
 
@@ -35,18 +35,32 @@ public class JSONTest : MonoBehaviour {
             canonJson = data.text;
             canonData = Json.Deserialize(canonJson) as Dictionary<string, object>;
             canons[i].canonName = canonData["CanonName"].ToString();
-            canons[i].atk = float.Parse(canonData["CanonPower"].ToString());
+            canons[i].power = float.Parse(canonData["CanonPower"].ToString());
             canons[i].hp = float.Parse(canonData["CanonHp"].ToString());
             canons[i].delay = float.Parse(canonData["CanonDelay"].ToString());
             canons[i].canonLevel = int.Parse(canonData["CanonLevel"].ToString());
             canons[i].heal = float.Parse(canonData["CanonHeal"].ToString());
             canons[i].canonClass = int.Parse(canonData["CanonClass"].ToString());
             canons[i].scale = float.Parse(canonData["CanonScale"].ToString());
+            if(int.Parse(canonData["isSoldOut"].ToString())==0)
+            {
+                canons[i].transform.FindChild("Disabled").GetComponent<UIWidget>().depth = 1;
+                canons[i].transform.FindChild("Disabled").gameObject.SetActive(true);
+            }
+            else if(int.Parse(canonData["isSoldOut"].ToString()) == 1)
+            {
+                canons[i].transform.FindChild("Disabled").gameObject.SetActive(false); 
+            }
         }
+       
+        
     }
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        stageNum = int.Parse(this.userInfoData["stageNum"].ToString());
+        gold = int.Parse(this.userInfoData["gold"].ToString());
+        cash = int.Parse(this.userInfoData["cash"].ToString());
+        material = int.Parse(this.userInfoData["material"].ToString());
+    }
 }

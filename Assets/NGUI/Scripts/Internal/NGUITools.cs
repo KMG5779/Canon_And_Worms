@@ -1388,7 +1388,7 @@ static public class NGUITools
 #else
 		if (!NGUITools.fileAccess) return false;
 
-		string path = Application.persistentDataPath + "/" + fileName;
+		string path = Application.dataPath + "/" + fileName;
 
 		if (bytes == null)
 		{

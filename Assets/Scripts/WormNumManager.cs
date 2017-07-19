@@ -7,9 +7,10 @@ public class WormNumManager : MonoBehaviour {
     public GameManager gm;
     public float limit;
     public int count;
+    public bool once;
 	// Use this for initialization
 	void Start () {
-        limit = gm.wormNumLimit[gm.stageNum];
+        once = true;
 	}
 	
 	// Update is called once per frame
@@ -25,9 +26,11 @@ public class WormNumManager : MonoBehaviour {
             wormHouse1.createWorm = true;
             wormHouse2.createWorm = true;
         }
-        if(wormHouse1.win&&wormHouse2.win&&count==0)
+       if(wormHouse1.win&&wormHouse2.win&&once&&count==0)
         {
             gm.win = true;
+            once = false;
         }
+
 	}
 }

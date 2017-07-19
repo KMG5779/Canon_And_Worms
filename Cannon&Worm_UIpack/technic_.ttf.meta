@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 911da7c191817174788d220d1f426bfb
+timeCreated: 1498467407
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Technic
+  fontNames:
+  - Technic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -7,36 +7,38 @@ public class WormHeadScript : MonoBehaviour {
     public Vector3[] postions;
     public GameObject Worm;
     public GameObject targetObj;
-    CanonScript canon;
+    public CanonScript canon;
     WormNumManager wormNum;
     UIManager UI;
     public string name;
-    public float speed, hp, atackedTime,delay,wormPower;
+    public float speed, hp, atackedTime,delay,wormPower,scale;
     public int length,destroy_Value,count;
     public float updateDelay,zLimit,yLimit,yUpLimit, yvalue,zvalue;
     public bool isDamaged;
     float timer,hpMax;
+    public AudioSource audio;
+    public GameObject effect;
     // Use this for initialization
     void Start()
     {
-        hp = 50;
-        UI = GameObject.FindGameObjectWithTag("UI").GetComponent<UIManager>();
-        //gameObject.name = name;
+        UI = GameObject.FindObjectOfType<UIManager>();
         canon = GameObject.FindObjectOfType<CanonScript>();
+        gameObject.name = name;
         //초기화
+        speed = speed / 10;
+        transform.localScale *= scale/100;
         postions = new Vector3[Worms.Count];
-        hpMax = canon.hp;
         updateDelay = 1/speed;
         wormNum = GameObject.Find("WormNumManager").GetComponent<WormNumManager>();
         //라인렌더러 초기화
-
+        audio = GetComponent<AudioSource>();
         for (int i = 0; i < Worms.Count; i++)
         {
             postions[i] = transform.position;
         }
-        
 
-        
+        hpMax = canon.hp;
+        initWorms();
         StartCoroutine(UpdateLine());   //updateDelay주기로 업데이트
     }
 
@@ -113,14 +115,17 @@ public class WormHeadScript : MonoBehaviour {
     {
         if(col.transform.tag=="Wall")
         {
+            audio.Play();
             DrawLaser(transform.position);
+            Instantiate(effect, transform.position, effect.transform.rotation);
            //GetComponent<Rigidbody>().velocity = transform.forward * speed;
 
         }
         else if(col.transform.tag=="CanonWall")
         {
-           
+            audio.Play();
             DrawLaser(transform.position);
+            Instantiate(effect, transform.position, effect.transform.rotation);
             //GetComponent<Rigidbody>().velocity = transform.forward * speed;
             destroy_Value--;
             for(int i=0;i<length;i++)

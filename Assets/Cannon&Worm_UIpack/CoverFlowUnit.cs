@@ -26,8 +26,8 @@ public class CoverFlowUnit : MonoBehaviour {
         mWidget = GetComponent<UIWidget>();
 
         //초기값 입력.
-        cellWidth = 150;
-        downScale = 0.35f;
+        cellWidth = 160;
+        downScale = 0.4f;
     }
 
     float pos, dist;

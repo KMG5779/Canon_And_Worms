@@ -7,19 +7,23 @@ public class CanonScript : MonoBehaviour {
     public string canonName;
     public float delay, rotationZ;
     public float hp, atk, scale, heal, canonBallspeed;
-    public int rarity;
+    public int rarity,canonId;
     public int bombLimit;
-    public int[] bombsLimit;
+    public BombInfo bombLimitInfo;
     public float speed,limit,touchLimit,touchTime, touchTimeLimit,changeStartPosTimeLimit, changeStartPosTime;
     public Vector3 lastPos, startPos, deltaPos, changeStartPos,tempPos;
     public Transform firePoint,start,last;
     public GameObject bomb;
     public GameObject[] bombs;
+    public GameObject[] canons;
     public float coolTime;
     public float DragSenseLimit; // 스크롤 뷰 조작과 안 겹치도록 터치 가능 위치의 제한을 두는 변수
-    public GameManager gm;
     public string JSon;
-    public int selectBomb;
+    public int selectBomb,i;
+    public UISprite aim;
+    public TextMesh nameText;
+    public GameObject effect;
+    public AudioSource canonSound;
     //public enum CanonBall
     //{
     //    small,
@@ -28,24 +32,29 @@ public class CanonScript : MonoBehaviour {
     //    tooBig
     //}
     // Use this for initialization
-    void Start () {
-        TextAsset data = Resources.Load("selectedCanonInfo") as TextAsset;
-        JSon = data.text;
-        Dictionary<string, object> canonData;
-        canonData = Json.Deserialize(JSon) as Dictionary<string, object>;
-        canonName = canonData["CanonName"].ToString();
-        hp = float.Parse(canonData["CanonHp"].ToString());
-        delay = float.Parse(canonData["CanonDelay"].ToString())/100;
-        atk = float.Parse(canonData["CanonPower"].ToString())/100;
-        scale = float.Parse(canonData["CanonScale"].ToString())/100;
-        heal = float.Parse(canonData["CanonHeal"].ToString())/100;
-        canonBallspeed = float.Parse(canonData["CanonSpeed"].ToString());
+    void Awake () {
+        i = 0;
+        canonId = PlayerPrefs.GetInt("selectedCanonID");
+        if (canonId != 1001)
+            i = canonId % 4;
+        else
+            i = 3;
+        canons[i].SetActive(true);
+        canonId = PlayerPrefs.GetInt("selectedCanonID");
+        hp = PlayerPrefs.GetFloat(canonId.ToString() + "Hp");
+        delay = PlayerPrefs.GetFloat(canonId.ToString() + "Delay") / 100;
+        atk = PlayerPrefs.GetFloat(canonId.ToString() + "Power");
+        scale = PlayerPrefs.GetFloat(canonId.ToString() + "Scale");
+        heal = PlayerPrefs.GetFloat(canonId.ToString() + "Heal");
+        canonBallspeed = PlayerPrefs.GetFloat(canonId.ToString() + "Speed");
         coolTime = delay;
+        canonSound= GetComponent<AudioSource>();
     }
     void Update()
     {
         coolTime += Time.deltaTime;
-        if (Input.mousePosition.y > Screen.height / DragSenseLimit)
+        aim.fillAmount = coolTime / delay;
+        if (Input.mousePosition.y > Screen.height / DragSenseLimit&&Input.mousePosition.y<Screen.height*6/DragSenseLimit&&Input.mousePosition.x>Screen.width/9&&Input.mousePosition.x<8*Screen.width/9)
         {
 
 
@@ -75,17 +84,18 @@ public class CanonScript : MonoBehaviour {
                 deltaPos = Vector3.zero;
                 if (lastPos.x > startPos.x - touchLimit && lastPos.x < startPos.x + touchLimit)
                 {
-                    if (touchTime < touchTimeLimit && coolTime > delay && bombLimit != 0)
+                    if (touchTime < touchTimeLimit && coolTime > delay && bombLimitInfo.bombLimit != 0)
                     {
-                        int canonType = Random.Range(1, 4);
                         GameObject canonBall;
-                        canonBall = Instantiate(bombs[selectBomb], firePoint.position, firePoint.rotation) as GameObject;
+                        canonSound.Play();
+                        canonBall = Instantiate(bomb, firePoint.position, firePoint.rotation) as GameObject;
                         canonBall.GetComponent<CanonBallScript>().transform.localScale *= (1 + scale);
                         canonBall.GetComponent<CanonBallScript>().speed += canonBallspeed;
                         canonBall.GetComponent<CanonBallScript>().heal += heal;
                         canonBall.GetComponent<CanonBallScript>().power += atk;
-                        bombsLimit[selectBomb]--;
+                        bombLimitInfo.bombLimit--;
                         coolTime = 0;
+                        Instantiate(effect, firePoint.position, effect.transform.rotation);
                     }
 
                 }
@@ -100,7 +110,7 @@ public class CanonScript : MonoBehaviour {
             {
                 rotationZ = -limit;
             }
-            transform.eulerAngles = new Vector3(rotationZ, 0, 0);
+            transform.eulerAngles = new Vector3(0, 90, rotationZ);
         }
     }
 	

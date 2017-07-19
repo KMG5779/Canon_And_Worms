@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MiniJSON;
-
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour {
     public GameManager gm;
     public CanonScript canon;
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour {
     public SpringPanel springPanel;
     public int canonBall;
     int tempHp;
-    public int hpMax,id;
+    public int hpMax,id,coinValue;
     string userJson;
     bool find;
     public TextAsset data;
@@ -27,28 +27,26 @@ public class UIManager : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        data = Resources.Load(id.ToString()) as TextAsset;
-        userJson = data.text;
-        userData = Json.Deserialize(userJson) as Dictionary<string, object>;
-        stage.text = userData["stageNum"].ToString();
-        coin.text = userData["coin"].ToString() + "/5";
-        cash.text = userData["cash"].ToString();
-        gold.text = userData["gold"].ToString();
-        material.text = userData["material"].ToString();
+        stage.text = PlayerPrefs.GetInt("stageNum",1).ToString();
+        coin.text = PlayerPrefs.GetInt("coin").ToString() + "/5";
+
+        cash.text = PlayerPrefs.GetInt("cash").ToString();
+        gold.text = PlayerPrefs.GetInt("gold").ToString();
+        material.text = PlayerPrefs.GetInt("material").ToString();
+        coinValue = PlayerPrefs.GetInt("coin",0);
     }
     void Start () {
-        
-        tempHp = (int)canon.hp / 10;
-        hpMax = (int)canon.hp;
-        hp.text = tempHp.ToString();
+        canon = GameObject.FindObjectOfType<CanonScript>();
+        hpMax = (int)canon.hp / 10;
         springPanel = GameObject.FindObjectOfType<SpringPanel>();
         find = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        //tempHp = (int)canon.hp / 10;
+        hpBar.value = (float)((canon.hp*0.1f) / hpMax);
         tempHp = (int)canon.hp / 10;
-        hpBar.value = canon.hp / hpMax;
         hp.text = tempHp.ToString();
         if (tempHp < 0)
             tempHp = 0;
@@ -63,8 +61,6 @@ public class UIManager : MonoBehaviour {
         }
         if (find)
         {
-
-
             xPos = springPanel.target.x;
             if (xPos > 690)
                 canonBall = 1;
@@ -88,8 +84,13 @@ public class UIManager : MonoBehaviour {
                 canonBall = 10;
             else if (xPos > -710)
                 canonBall = 11;
+            else
+                canonBall = 0;
             switch (canonBall)
             {
+                case 0:
+                    canon.selectBomb = 1;
+                    break;
                 case 1:
                     canon.selectBomb = 1;
                     break;
@@ -129,7 +130,30 @@ public class UIManager : MonoBehaviour {
 
     public void ExitStage()
     {
-        Application.LoadLevel("Main");
+        SceneManager.LoadScene("Main");
     }
-
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public void NextStage()
+    {
+        if(coinValue>1)
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("Stage");
+            coinValue--;
+            PlayerPrefs.SetInt("coin", coinValue);
+            if (PlayerPrefs.GetInt("bestScore") > int.Parse(score.text))
+                PlayerPrefs.SetInt("bestScore", int.Parse(score.text));
+        }
+        else
+        {
+            Debug.Log("코인이 부족합니다. 메인 화면으로 돌아가주세요.");
+        }
+    }
+    public void BackMain()
+    {
+        SceneManager.LoadScene("Main");
+    }
 }

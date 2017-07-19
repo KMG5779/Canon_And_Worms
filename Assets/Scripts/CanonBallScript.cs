@@ -10,16 +10,19 @@ public class CanonBallScript : MonoBehaviour {
     CanonScript canon;
     WormHeadScript head;
     public UIManager UI;
-	// Use this for initialization
-	void Start () {
+    public GameObject anim;
+    // Use this for initialization
+    void Start () {
         //head = GameObject.FindObjectOfType<WormHeadScript>();
         canon = GameObject.FindWithTag("Canon").GetComponent<CanonScript>();
         UI = GameObject.FindWithTag("UI").GetComponent<UIManager>();
+        transform.localScale *= range / 100;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(0, speed*Time.deltaTime, 0);
+        transform.Translate(0, speed*Time.deltaTime/10, 0);
         if (hp <= 0)
         {
             Destroy(gameObject);
@@ -33,6 +36,7 @@ public class CanonBallScript : MonoBehaviour {
             if (col.GetComponent<WormScript>().head.isDamaged)
                 hp--;
             col.GetComponent<WormScript>().head.damage(power,heal);
+            Instantiate(anim, transform.position, anim.transform.rotation);
             
         }
         else if(col.transform.tag == "WormHead")
@@ -40,6 +44,7 @@ public class CanonBallScript : MonoBehaviour {
             if (col.GetComponent<WormHeadScript>().isDamaged)
                 hp--;
             col.GetComponent<WormHeadScript>().damage(power,heal);
+            Instantiate(anim,transform.position,anim.transform.rotation);
         }
         else if (col.transform.tag == "Wall")
         {
